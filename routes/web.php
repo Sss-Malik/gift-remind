@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\GiftController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,7 @@ Route::middleware(['auth'])->group(function () {
         $request->fulfill();
         return redirect('/dashboard');
     })->middleware('signed')->name('verification.verify');
+
+
+    Route::get('/gifts', [GiftController::class, 'index'])->name('gifts.index');
 });
