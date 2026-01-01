@@ -43,13 +43,13 @@
             </a>
 
             <a href="{{ route('gifts.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors">
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('gifts.index') ? 'bg-brand-50 text-brand-700 font-semibold' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900' }}">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                 Gift Catalogue
             </a>
 
-            <a href="#"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-600 hover:bg-stone-50 hover:text-stone-900 transition-colors">
+            <a href="{{ route('events.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('events.*') ? 'bg-brand-50 text-brand-700 font-semibold' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900' }}">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 My Events
             </a>
