@@ -27,4 +27,9 @@ class Event extends Model
     {
         return $this->belongsTo(Gift::class);
     }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }

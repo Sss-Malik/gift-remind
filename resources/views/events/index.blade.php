@@ -52,9 +52,19 @@
                             @endif
                         </td>
                         <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    {{ ucfirst($event->status) }}
-                                </span>
+                            @if($event->payment)
+                                @if($event->payment->status == 'approved')
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Paid</span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Processing</span>
+                                @endif
+                            @elseif($event->gift)
+                                <a href="{{ route('payments.create', $event->id) }}" class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-brand-600 text-white hover:bg-brand-700 shadow-sm transition">
+                                    Pay Now
+                                </a>
+                            @else
+                                <span class="text-xs text-stone-400">Select Gift</span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
