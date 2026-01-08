@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GiftController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -51,4 +53,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::get('/events/{event}/pay', [PaymentController::class, 'create'])->name('payments.create');
     Route::post('/events/{event}/pay', [PaymentController::class, 'store'])->name('payments.store');
+
+    // --- Admin Routes ---
+    Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/payments', [AdminController::class, 'payments'])->name('payments');
+        Route::post('/payments/{payment}/approve', [AdminController::class, 'approvePayment'])->name('payments.approve');
+        Route::post('/payments/{payment}/reject', [AdminController::class, 'rejectPayment'])->name('payments.reject');
+    });
 });
