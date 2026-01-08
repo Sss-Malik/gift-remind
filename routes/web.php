@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminGiftController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GiftController;
@@ -60,5 +61,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/payments', [AdminController::class, 'payments'])->name('payments');
         Route::post('/payments/{payment}/approve', [AdminController::class, 'approvePayment'])->name('payments.approve');
         Route::post('/payments/{payment}/reject', [AdminController::class, 'rejectPayment'])->name('payments.reject');
+
+        Route::resource('gifts', AdminGiftController::class)->names('gifts');
     });
 });

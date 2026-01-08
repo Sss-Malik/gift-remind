@@ -57,6 +57,11 @@
                             <span class="ml-auto bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">{{ $pendingCount }}</span>
                         @endif
                     </a>
+                    <a href="{{ route('admin.gifts.index') }}"
+                       class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.gifts.*') ? 'bg-stone-900 text-white shadow-md' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900' }}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        Manage Gifts
+                    </a>
                 </div>
 
             @else
