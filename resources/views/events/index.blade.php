@@ -79,8 +79,12 @@
             <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
-            <h3 class="text-lg font-bold text-stone-900 mb-2">No scheduled events</h3>
-            <p class="text-stone-500 mb-6">You haven't added any upcoming events yet.</p>
+            <h3 class="text-lg font-bold text-stone-900 mb-2">No scheduled events yet</h3>
+            <p class="text-stone-500 mb-6">Create your first event and we'll remind you when it's time to send a gift.</p>
+            <a href="{{ route('events.create') }}" class="inline-flex items-center gap-2 bg-brand-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-700 transition shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                Schedule Your First Event
+            </a>
         </div>
     @endif
 </x-app-layout>

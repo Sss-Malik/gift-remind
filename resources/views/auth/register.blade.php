@@ -2,30 +2,39 @@
     <div class="min-h-screen flex flex-col items-center justify-center pt-6 sm:pt-0 bg-stone-50">
         <div class="w-full sm:max-w-md mt-6 px-6 py-8 bg-white shadow-xl overflow-hidden sm:rounded-2xl border border-stone-100">
             <div class="mb-6 text-center">
-                <h2 class="text-2xl font-bold text-stone-900">Create Account</h2>
-                <p class="text-stone-500 text-sm mt-1">Join GiftSync today</p>
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="w-8 h-8 bg-brand-600 rounded-lg shadow-sm rotate-3"></div>
+                    <span class="text-xl font-bold text-stone-900">Gift<span class="text-brand-600">Sync</span></span>
+                </div>
+                <h2 class="text-2xl font-bold text-stone-900">Create Your Account</h2>
+                <p class="text-stone-500 text-sm mt-1">Join GiftSync and never miss a special moment</p>
             </div>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div>
-                    <label class="block font-medium text-sm text-stone-700" for="name">Name</label>
-                    <input id="name" type="text" name="name" :value="old('name')" required autofocus
+                    <label class="block font-medium text-sm text-stone-700" for="name">Full Name</label>
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
+                           placeholder="e.g. Ahmed Khan"
                            class="mt-1 block w-full rounded-lg border-stone-300 shadow-sm focus:border-brand-500 focus:ring-brand-500 bg-stone-50 p-2.5">
+                    @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-medium text-sm text-stone-700" for="email">Email</label>
-                    <input id="email" type="email" name="email" :value="old('email')" required
+                    <label class="block font-medium text-sm text-stone-700" for="email">Email Address</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                           placeholder="you@example.com"
                            class="mt-1 block w-full rounded-lg border-stone-300 shadow-sm focus:border-brand-500 focus:ring-brand-500 bg-stone-50 p-2.5">
                     @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-medium text-sm text-stone-700" for="phone">Phone (Optional)</label>
-                    <input id="phone" type="text" name="phone" placeholder="0300-1234567"
+                    <label class="block font-medium text-sm text-stone-700" for="phone">Phone Number</label>
+                    <input id="phone" type="text" name="phone" value="{{ old('phone') }}"
+                           placeholder="03XX-XXXXXXX"
                            class="mt-1 block w-full rounded-lg border-stone-300 shadow-sm focus:border-brand-500 focus:ring-brand-500 bg-stone-50 p-2.5">
+                    <p class="text-xs text-stone-400 mt-1">Used for verification and reminders</p>
                 </div>
 
                 <div class="mt-4">
@@ -40,14 +49,17 @@
                            class="mt-1 block w-full rounded-lg border-stone-300 shadow-sm focus:border-brand-500 focus:ring-brand-500 bg-stone-50 p-2.5">
                 </div>
 
-                <div class="flex items-center justify-between mt-6">
-                    <a class="underline text-sm text-stone-600 hover:text-brand-600" href="{{ route('login') }}">
-                        Already registered?
-                    </a>
-
-                    <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 bg-brand-600 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-700 focus:bg-brand-700 transition ease-in-out duration-150">
-                        Register
+                <div class="mt-6">
+                    <button type="submit" class="w-full bg-brand-600 text-white py-3 rounded-xl font-bold shadow-md hover:bg-brand-700 transition">
+                        Create Account
                     </button>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <span class="text-sm text-stone-500">Already have an account?</span>
+                    <a class="text-sm text-brand-600 hover:text-brand-700 font-medium ml-1" href="{{ route('login') }}">
+                        Sign in
+                    </a>
                 </div>
             </form>
         </div>

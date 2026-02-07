@@ -41,8 +41,13 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-8 text-center text-stone-500">
-                        No payment history found.
+                    <td colspan="5" class="px-6 py-12 text-center">
+                        <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-stone-900 mb-2">No payments yet</h3>
+                        <p class="text-stone-500 mb-4">Your payment history will appear here once you complete a gift purchase.</p>
+                        <a href="{{ route('events.index') }}" class="text-brand-600 hover:text-brand-700 font-medium text-sm">View your events</a>
                     </td>
                 </tr>
             @endforelse

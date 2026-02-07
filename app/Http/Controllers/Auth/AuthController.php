@@ -43,7 +43,8 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        // Redirect to demo verification flow instead of dashboard
+        return redirect()->route('verify.email');
     }
 
     // --- LOGIN ---
