@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/gifts', [GiftController::class, 'index'])->name('gifts.index');
+    Route::get('/gifts/{gift}', [GiftController::class, 'show'])->name('gifts.show');
 
     // AI Gift Suggestions
     Route::get('/ai/suggestions', [AiSuggestionController::class, 'index'])->name('ai.suggestions');

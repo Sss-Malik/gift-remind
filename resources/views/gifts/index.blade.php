@@ -36,10 +36,15 @@
                             {{ $gift->description }}
                         </p>
 
-                        <a href="{{ route('events.create') }}" class="w-full py-3 rounded-xl border-2 border-stone-100 text-stone-600 font-semibold hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors duration-200 flex items-center justify-center gap-2">
-                            <span>Select Gift</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
+                        <div class="flex gap-3">
+                            <a href="{{ route('gifts.show', $gift) }}" class="flex-1 py-3 rounded-xl border border-stone-200 text-stone-700 font-semibold hover:bg-stone-50 transition flex items-center justify-center gap-2">
+                                <span>View Details</span>
+                            </a>
+                            <a href="{{ route('events.create', ['gift_id' => $gift->id]) }}" class="flex-1 py-3 rounded-xl border-2 border-stone-100 text-stone-600 font-semibold hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors duration-200 flex items-center justify-center gap-2">
+                                <span>Select Gift</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforeach

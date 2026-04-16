@@ -140,23 +140,37 @@
                                 <div class="space-y-3">
                                     @foreach($aiSuggestions as $suggestion)
                                         @php($gift = $suggestion['gift'])
-                                        <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none hover:border-brand-500 transition bg-white">
-                                            <input type="radio" name="gift_id" value="{{ $gift->id }}" class="sr-only peer" {{ $selectedGiftId === (string) $gift->id ? 'checked' : '' }}>
-                                            <span class="flex flex-1 gap-4 pr-8">
-                                                <span class="w-16 h-16 rounded-lg bg-stone-100 overflow-hidden shrink-0">
+                                        <div class="rounded-xl border bg-white p-4 shadow-sm transition hover:border-brand-500">
+                                            <div class="flex gap-4">
+                                                <div class="w-16 h-16 rounded-lg bg-stone-100 overflow-hidden shrink-0">
                                                     <img src="{{ $gift->image_path }}" alt="{{ $gift->name }}" class="w-full h-full object-cover">
-                                                </span>
-                                                <span class="flex flex-col">
-                                                    <span class="text-sm font-bold text-stone-900">{{ $gift->name }}</span>
-                                                    <span class="mt-1 text-xs text-stone-500">{{ $gift->category }} &middot; Rs. {{ number_format($gift->price) }}</span>
+                                                </div>
+                                                <div class="min-w-0 flex-1">
+                                                    <div class="flex items-start justify-between gap-4">
+                                                        <div>
+                                                            <h6 class="text-sm font-bold text-stone-900">{{ $gift->name }}</h6>
+                                                            <p class="mt-1 text-xs text-stone-500">{{ $gift->category }} &middot; Rs. {{ number_format($gift->price) }}</p>
+                                                        </div>
+                                                        <input id="suggested-gift-{{ $gift->id }}" type="radio" name="gift_id" value="{{ $gift->id }}" class="mt-1 h-4 w-4 border-stone-300 text-brand-600 focus:ring-brand-500" {{ $selectedGiftId === (string) $gift->id ? 'checked' : '' }}>
+                                                    </div>
+
                                                     @if($suggestion['matched_name'] !== $gift->name)
-                                                        <span class="mt-2 text-xs font-medium text-brand-700">Inspired by: {{ $suggestion['matched_name'] }}</span>
+                                                        <p class="mt-2 text-xs font-medium text-brand-700">Inspired by: {{ $suggestion['matched_name'] }}</p>
                                                     @endif
-                                                    <span class="mt-2 text-sm text-stone-500 leading-relaxed">{{ $suggestion['reason'] }}</span>
-                                                </span>
-                                            </span>
-                                            <div class="absolute top-4 right-4 h-5 w-5 rounded-full border border-stone-300 peer-checked:bg-brand-600 peer-checked:border-brand-600" aria-hidden="true"></div>
-                                        </label>
+
+                                                    <p class="mt-2 text-sm leading-relaxed text-stone-500">{{ $suggestion['reason'] }}</p>
+
+                                                    <div class="mt-4 flex flex-wrap gap-2">
+                                                        <a href="{{ route('gifts.show', $gift) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-lg border border-stone-200 px-3 py-2 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition">
+                                                            View Details
+                                                        </a>
+                                                        <label for="suggested-gift-{{ $gift->id }}" class="inline-flex cursor-pointer items-center justify-center rounded-lg bg-brand-600 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-700 transition">
+                                                            Select Gift
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -169,17 +183,25 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach($gifts as $gift)
-                            <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none hover:border-brand-500 transition bg-white">
-                                <input type="radio" name="gift_id" value="{{ $gift->id }}" class="sr-only peer" {{ $selectedGiftId === (string) $gift->id && !in_array((string) $gift->id, $suggestedGiftIds, true) ? 'checked' : '' }}>
-                                <span class="flex flex-1">
-                                    <span class="flex flex-col">
-                                        <span class="block text-sm font-medium text-stone-900">{{ $gift->name }}</span>
-                                        <span class="mt-1 flex items-center text-xs text-stone-500">{{ $gift->category }}</span>
-                                        <span class="mt-2 text-sm font-bold text-brand-600">Rs. {{ number_format($gift->price) }}</span>
-                                    </span>
-                                </span>
-                                <div class="absolute top-4 right-4 h-5 w-5 rounded-full border border-stone-300 peer-checked:bg-brand-600 peer-checked:border-brand-600" aria-hidden="true"></div>
-                            </label>
+                            <div class="rounded-xl border bg-white p-4 shadow-sm transition hover:border-brand-500">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="min-w-0">
+                                        <h5 class="text-sm font-medium text-stone-900">{{ $gift->name }}</h5>
+                                        <p class="mt-1 text-xs text-stone-500">{{ $gift->category }}</p>
+                                        <p class="mt-2 text-sm font-bold text-brand-600">Rs. {{ number_format($gift->price) }}</p>
+                                    </div>
+                                    <input id="catalogue-gift-{{ $gift->id }}" type="radio" name="gift_id" value="{{ $gift->id }}" class="mt-1 h-4 w-4 border-stone-300 text-brand-600 focus:ring-brand-500" {{ $selectedGiftId === (string) $gift->id && !in_array((string) $gift->id, $suggestedGiftIds, true) ? 'checked' : '' }}>
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <a href="{{ route('gifts.show', $gift) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-lg border border-stone-200 px-3 py-2 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition">
+                                        View Details
+                                    </a>
+                                    <label for="catalogue-gift-{{ $gift->id }}" class="inline-flex cursor-pointer items-center justify-center rounded-lg bg-brand-600 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-700 transition">
+                                        Select Gift
+                                    </label>
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
